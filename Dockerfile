@@ -44,7 +44,8 @@ ENV NODE_ENV=production \
   PAPERCLIP_DEPLOYMENT_EXPOSURE=private
 
 RUN useradd -m -s /bin/bash -u 1001 paperclip \
-  && mkdir -p /paperclip/instances/default \
+  && mkdir -p /paperclip/instances/default /paperclip/agents/ceo \
+  && echo "# CEO Agent\n\nYou are the CEO agent for this Paperclip instance." > /paperclip/agents/ceo/AGENTS.md \
   && chown -R paperclip:paperclip /paperclip /app
 
 USER paperclip
