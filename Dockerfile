@@ -43,7 +43,11 @@ ENV NODE_ENV=production \
   PAPERCLIP_DEPLOYMENT_MODE=authenticated \
   PAPERCLIP_DEPLOYMENT_EXPOSURE=private
 
-RUN mkdir -p /paperclip/instances/default
+RUN useradd -m -s /bin/bash -u 1001 paperclip \
+  && mkdir -p /paperclip/instances/default \
+  && chown -R paperclip:paperclip /paperclip /app
+
+USER paperclip
 EXPOSE 3100
 
 CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/src/index.ts"]
