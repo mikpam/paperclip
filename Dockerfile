@@ -15,8 +15,6 @@ COPY packages/db/package.json packages/db/
 COPY packages/adapter-utils/package.json packages/adapter-utils/
 COPY packages/adapters/claude-local/package.json packages/adapters/claude-local/
 COPY packages/adapters/codex-local/package.json packages/adapters/codex-local/
-COPY packages/adapters/cursor-local/package.json packages/adapters/cursor-local/
-COPY packages/adapters/openclaw/package.json packages/adapters/openclaw/
 COPY packages/adapters/opencode-local/package.json packages/adapters/opencode-local/
 RUN pnpm install --frozen-lockfile
 
@@ -45,7 +43,7 @@ ENV NODE_ENV=production \
 
 RUN useradd -m -s /bin/bash -u 1001 paperclip \
   && mkdir -p /paperclip/instances/default /paperclip/agents/ceo \
-  && echo "# CEO Agent\n\nYou are the CEO agent for this Paperclip instance." > /paperclip/agents/ceo/AGENTS.md \
+  && echo "# CEO Agent\n\nYou are the CEO agent for this Symphony instance." > /paperclip/agents/ceo/AGENTS.md \
   && chown -R paperclip:paperclip /paperclip /app
 
 COPY entrypoint.sh /app/entrypoint.sh
