@@ -48,7 +48,9 @@ RUN useradd -m -s /bin/bash -u 1001 paperclip \
   && echo "# CEO Agent\n\nYou are the CEO agent for this Paperclip instance." > /paperclip/agents/ceo/AGENTS.md \
   && chown -R paperclip:paperclip /paperclip /app
 
-USER paperclip
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 3100
 
-CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/src/index.ts"]
+ENTRYPOINT ["/app/entrypoint.sh"]
