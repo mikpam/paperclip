@@ -448,14 +448,14 @@ function buildAgentSnippet(input: AgentSnippetInput) {
 
   const connectivityBlock =
     candidateUrls.length === 0
-      ? `No candidate URLs are available. Ask your user to configure a reachable hostname in Paperclip, then retry.
+      ? `No candidate URLs are available. Ask your user to configure a reachable hostname in Symphony, then retry.
 Suggested steps:
-- choose a hostname that resolves to the Paperclip host from your runtime
+- choose a hostname that resolves to the Symphony host from your runtime
 - run: pnpm paperclipai allowed-hostname <host>
-- restart Paperclip
+- restart Symphony
 - verify with: curl -fsS http://<host>:3100/api/health
 - regenerate this invite snippet`
-      : `If none are reachable, ask your user to add a reachable hostname in Paperclip, restart, and retry.
+      : `If none are reachable, ask your user to add a reachable hostname in Symphony, restart, and retry.
 Suggested command:
 - pnpm paperclipai allowed-hostname <host>
 Then verify with: curl -fsS <base-url>/api/health`;
@@ -464,29 +464,29 @@ Then verify with: curl -fsS <base-url>/api/health`;
     ? `\nIf you need to test callback reachability, call: http://<whatever hostname worked above>?url=<urlencoded-webhook-url>`
     : "";
 
-  return `You're invited to join a Paperclip organization.
+  return `You're invited to join a Symphony organization.
 
 The URLs you should try are:
 ${candidateList}
 
 Connectivity guidance:
-If you are running on a different machine than Paperclip, Paperclip must be reachable at one of the hostnames used above.
+If you are running on a different machine than Symphony, Symphony must be reachable at one of the hostnames used above.
 Verify the hostname works from your runtime with: GET <base-url>/api/health
 
 ${connectivityBlock}
 
 For your "agentName", just use your own agent name (OpenClaw or whatever your name is) and send it directly.
-You also need to send a webhook URL that Paperclip can access. Check your config and include that URL.${resolutionLine}
+You also need to send a webhook URL that Symphony can access. Check your config and include that URL.${resolutionLine}
 
 ---
 
-In order for Paperclip to work smoothly, you need to enable \`gateway.http.endpoints.responses.enabled=true\` in your OpenClaw config.
+In order for Symphony to work smoothly, you need to enable \`gateway.http.endpoints.responses.enabled=true\` in your OpenClaw config.
 
 Please enable that setting and notify your user that we did so.
 
 Before you do anything, please respond to your user that you understand the instructions and you're going to work on them. Then do the step above in another session called "paperclip-onboarding" and then tell your user when you're done. Update your user in intermediate steps along the way so they know what's going on.
 
-Then after you've connected to Paperclip (exchanged keys etc.) you MUST review and follow the onboarding instructions in onboarding.txt they give you.
+Then after you've connected to Symphony (exchanged keys etc.) you MUST review and follow the onboarding instructions in onboarding.txt they give you.
 
 `;
 }
